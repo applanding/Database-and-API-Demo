@@ -1,0 +1,147 @@
+//
+//  TenderApps-Prefix.pch
+//  TenderApps
+//
+//  Created by ETL on 19/08/15.
+//  Copyright (c) 2015 ETL. All rights reserved.
+//
+
+#ifndef TenderApps_TenderApps_Prefix_pch
+#define TenderApps_TenderApps_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "CommonMethods.h"
+#import "AppDelegate.h"
+#import "NSString+Additon.h"
+#import "NSString+HTML.h"
+#import "UILabel+FormattedText.h"
+#import "CommonMethods.h"
+#import "DatabaseHelper.h"
+#import "APIModelClass.h"
+#import "UIView+Toast.h"
+#import "RMUniversalAlert.h"
+#pragma mark - General Defination
+
+#ifdef Prototype
+
+    #define SubDomainID                 @"834"
+    #define SubDomainName               @"Tender\nApps"
+    #define SubDomainHeaderImage        @"header"
+    #define SubDomainHeaderLogoImage    @"header_tiger"
+    #define SubDomainHeaderTitleColor   [UIColor blackColor]
+    #define Base_Url                    @"http://192.168.100.153:8081/api/"
+    #define Apple_APPID                 @"1037268599" 
+    #define Apple_Store_URL             [NSString stringWithFormat:@"https://itunes.apple.com/us/app/tender-prototype/id%@?ls=1&mt=8",Apple_APPID]
+    #define Unselected_BG_Color             [UIColor colorWithRed:211.0f/255.0f green:211.0f/255.0f blue:211.0f/255.0f alpha:1.0]
+    #define Selected_BG_Color               [UIColor colorWithRed:124.0f/255.0f green:123.0f/255.0f blue:123.0f/255.0f alpha:1.0]
+    #define Unselected_Title_Color          [UIColor colorWithRed:81.0f/255.0f green:81.0f/255.0f blue:81.0f/255.0f alpha:1.0]
+    #define Selected_Title_Color            [UIColor whiteColor]
+    #define SearchColor                     [UIColor colorWithRed:255.0f/255.0f green:187.0f/255.0f blue:71.0f/255.0f alpha:1.0]
+    #define Right_Menu_BGColor                     [UIColor colorWithRed:109.0f/255.0f green:109.0f/255.0f blue:109.0f/255.0f alpha:1.0]
+
+#endif
+
+#ifdef BPCLTenders
+
+//    #define SubDomainID                 @"1002"
+    #define SubDomainID                 @"834"
+    #define SubDomainName               @""
+    #define SubDomainHeaderImage        @""
+    #define SubDomainHeaderLogoImage    @"header_bpcllogo"
+    #define SubDomainHeaderTitleColor   [UIColor blackColor]
+//    #define Base_Url                    @"http://www.app.tendertiger.com/api/"
+    #define Base_Url                    @"http://192.168.100.153:8081/api/"
+    #define Apple_APPID                 @"1037268599"
+    #define Apple_Store_URL             [NSString stringWithFormat:@"https://itunes.apple.com/us/app/tender-prototype/id%@?ls=1&mt=8",Apple_APPID]
+    #define Unselected_BG_Color             [UIColor colorWithRed:248.0f/255.0f green:248.0f/255.0f blue:248.0f/255.0f alpha:1.0]
+    #define Selected_BG_Color               [UIColor colorWithRed:0.0f green:125.0f/255.0f blue:198.0f/255.0f alpha:1.0]
+    #define Unselected_Title_Color          [UIColor colorWithRed:81.0f/255.0f green:81.0f/255.0f blue:81.0f/255.0f alpha:1.0]
+    #define Selected_Title_Color            [UIColor whiteColor]
+    #define SearchColor                     [UIColor colorWithRed:0.0f green:125.0f/255.0f blue:198.0f/255.0f alpha:1.0]
+    #define Right_Menu_BGColor              [UIColor colorWithRed:46.0f/255.0f green:46.0f/255.0f blue:46.0f/255.0f alpha:1.0]
+
+#endif
+
+#pragma mark - General Defination
+
+    #define IS_IPHONE_5 ([[UIScreen mainScreen ]bounds].size.height == 568)
+    #define IPHONE  ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    #define IS_IOS7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+    #define IS_IOS8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    #define DELEGATE                    ((AppDelegate*)[[UIApplication sharedApplication]delegate])
+    #define App_Version                 [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"]
+    #define Country_Code                [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
+    #define OS_Version                  [UIDevice currentDevice].systemVersion
+    #define Model_Name                  [[CommonMethods sharedInstance] deviceName]
+    #define Manufacture_Name            @"Apple"
+    #define OS_Name                     @"iOS"
+    #define Document_Directory [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
+    #define DB_TenderApps               @"DBTenderApps.sqlite"
+
+#pragma mark - User
+
+    #define User_Email                  [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"User_Email"]]
+    #define User_Password               [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"User_Password"]]
+    #define User_Keep_Login             [[NSUserDefaults standardUserDefaults]boolForKey:@"Keep_Login"]
+    #define User                        [[NSUserDefaults standardUserDefaults]valueForKey:@"User"]
+    #define AppUserID                   [User valueForKey:@"appuserid"]?[NSString stringWithFormat:@"%@",[User valueForKey:@"appuserid"]]:@""
+    #define User_CustID                 [NSString stringWithFormat:@"%@",[User valueForKey:@"custid"]]
+    #define User_Query                  [NSString stringWithFormat:@"%@",[User valueForKey:@"query"]]
+    #define User_QueryDisplay           [NSString stringWithFormat:@"%@",[User valueForKey:@"querytext"]]
+    #define User_Status                 [NSString stringWithFormat:@"%@",[User valueForKey:@"userstatus"]]
+    #define SortQuery                   [[NSUserDefaults standardUserDefaults]valueForKey:[NSString stringWithFormat:@"SortQueryOf%@",User_CustID]]
+    #define MinimumSrNo                 [[NSUserDefaults standardUserDefaults]integerForKey:[NSString stringWithFormat:@"MinSrNoOf%@",User_CustID]]
+    #define SwipeHelp_FirstTime_Seen    [[NSUserDefaults standardUserDefaults]boolForKey:@"SwipeHelp_FirstTime_Seen"]
+
+
+
+#pragma mark - User Type
+
+    typedef NS_ENUM(NSInteger, User_Type) {
+        Subscriber_User = 1,
+        Expired_User = 2,
+        Registerd_User = 3
+    };
+
+#pragma mark - Messages
+
+    #define Network_Error_Msg           @"Network Error or Server Busy, try after sometime"
+    #define No_Internet_Msg             @"No internet connectivity is found, try again."
+    #define Loading_Msg                 @"Loading..."
+    #define Download_Msg                @"Downloading Data..."
+    #define NoLiveRecords               @"No Record Found"
+    #define NoSeenRecords               @"You have not Liked/Viewed any tender yet. To Like/View a tender go to Live tab."
+    #define NoSearchRecords             @"Sorry, no tenders found in your mobile."
+    #define Share_Tender_Msg            @"Get all tenders of your choice on your Smartphone. Download TenderTiger mobile app & view your first FREE tender today.\niOS user http://bit.ly/TenderTiger_iOS\nAndroid user http://bit.ly/TenderTiger\nWindows user http://bit.ly/TenderTiger_windows" //todo
+#pragma mark - Define Values
+
+    #define Max_Length_Password          50
+    #define Min_Length_Password           6
+    #define Max_Length_Name              50
+    #define Min_Length_Mobile             7
+    #define Max_Length_Mobile            15
+    #define Record_Per_Page              30
+    #define Alert_Delay                  (IS_IOS7_OR_LATER)?0.6:0.3
+
+#pragma mark - Constrains
+
+    #define ALPHA                       @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+    #define NUMERIC                     @"1234567890\b\n"
+    #define EMAIL                       @"@.-_\n"
+    #define PASSWORD                    @"!@#$_.()\n"
+    #define SEARCH                      @" -,&*.()\n"
+    #define Email_Valid                 ALPHA NUMERIC EMAIL
+    #define Pass_Valid                  ALPHA NUMERIC PASSWORD
+    #define Date_Format_Server          @"yyyy-MM-dd"
+    #define Date_Format_App             @"dd-MMM-yyyy"
+    #define DateTime_Format_Server      @"yyyy-MM-dd HH:mm:ss"
+    #define Already_Installed           [[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"Already_Installed%@",App_Version]]
+
+#pragma mark - Color
+
+#define BackgroundColor                 [UIColor colorWithRed:245.0f/255.0f green:245.0f/255.0f blue:245.0f/255.0f alpha:1.0]
+
+
+#endif
